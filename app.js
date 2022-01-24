@@ -151,8 +151,8 @@ class Person {
 }
 
 class Programmer extends Person {
-  constructor(fullName, languages = []) {
-    super(fullName);
+  constructor(fullName, job, age, languages = []) {
+    super(fullName, job, age);
     this.languages = languages;
     this.busy = true;
   }
@@ -179,9 +179,18 @@ class Programmer extends Person {
 }
 
 const person01 = new Person("Harold", "Road to Hire Apprentice", 20);
-const programmer01 = new Programmer("Harold", ["HTML", "C#", "LUA"]);
-const programmer02 = new Programmer("Edwin", ["HTML", "SASS,Ruby"]);
-const programmer03 = new Programmer("Emmanuel", ["HTML", "CSS", "JS", "FUN"]);
+const programmer01 = new Programmer("Harold", "DevOps", 35, [
+  "HTML",
+  "C#",
+  "LUA",
+]);
+const programmer02 = new Programmer("Edwin", "janitor", 89, [
+  "HTML",
+  "SASS,Ruby",
+]);
+const programmer03 = new Programmer("Emmanuel", "SysOps", 31, [
+  ("HTML", "CSS", "JS", "FUN"),
+]);
 
 programmer01.learnLanguage("CSS");
 programmer02.learnLanguage("C++");
