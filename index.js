@@ -11,8 +11,8 @@ const exercise = (string) => () => `Todays exercise: ${string}`;
 
 const run = exercise("running");
 const swim = exercise("swimming");
-// console.log(run());
-// console.log(swim());
+console.log(run());
+console.log(swim());
 
 /**
  * MEDIUM: Write a function that would allow you to do this:
@@ -25,8 +25,8 @@ const swim = exercise("swimming");
 
 const cutPizzaSlices = (int1) => (int2) => int1 / int2;
 const sharePizza = cutPizzaSlices(8);
-// console.log(sharePizza(2));
-// console.log(sharePizza(3));
+console.log(sharePizza(2));
+console.log(sharePizza(3));
 
 /**  HARD: Data security exercise. Inside of a closure, create an object called pii
  * (Personally Identifiable Information)that cannot be accessed directly.
@@ -41,7 +41,7 @@ const sharePizza = cutPizzaSlices(8);
  * but they definitely shouldn't have access to their ssn.
  */
 
-// using arrow function
+// *** using arrow function ***
 const pii = () => {
   const names = "Harold";
   const ssn = "123-45-6789";
@@ -58,12 +58,12 @@ const pii = () => {
 
 const test = pii();
 
-// console.log(test.names);
-// console.log(test.ssn);
-// console.log(test.getName());
-// console.log(test.getSSN());
+console.log(test.names);
+console.log(test.ssn);
+console.log(test.getName());
+console.log(test.getSSN());
 
-// using Hoisted function
+// *** using Hoisted function ***
 function piis() {
   const names = "Harold";
   const ssn = "123-45-6789";
@@ -73,12 +73,12 @@ function piis() {
 }
 
 const piiTest = new piis();
-// console.log(piiTest.names);
-// console.log(piiTest.ssn);
-// console.log(piiTest.getName());
-// console.log(piiTest.getSSN());
+console.log(piiTest.names);
+console.log(piiTest.ssn);
+console.log(piiTest.getName());
+console.log(piiTest.getSSN());
 
-// using classes and the private variable initializer
+// *** using classes and the private variable initializer ***
 class Pii {
   #names = "Harold";
   #ssn = "123-45-6789";
@@ -92,11 +92,12 @@ class Pii {
 }
 
 const pit = new Pii();
-// console.log(pit.names);
-// console.log(pit.ssn);
-// console.log(pit.getName());
-// console.log(pit.getSSN());
+console.log(pit.names);
+console.log(pit.ssn);
+console.log(pit.getName());
+console.log(pit.getSSN());
 
+// *** Module ***
 const piiModule = (function () {
   const ssn = () => "123-45-678";
 
@@ -117,9 +118,9 @@ const piiModule = (function () {
   };
 })();
 
-// piiModule.pii.ssnAccess("turtles");
-// piiModule.pii.ssnAccess("cats");
-// console.log(piiModule.pii.names);
+piiModule.pii.ssnAccess("turtles");
+piiModule.pii.ssnAccess("cats");
+console.log(piiModule.pii.names);
 
 /**
  * VERY HARD: Object prototype chain and prototypal inheritance exercise.
@@ -145,128 +146,53 @@ const piiModule = (function () {
  * function Programmer(name, job, age, languages) { }
  */
 
-// More common usage
-// class Person {
-//   constructor(name, job, age) {
-//     this.name = name;
-//     this.job = job;
-//     this.age = age;
-//   }
-//   exercise() {
-//     console.log("running is fun!");
-//   }
-//   fetchJob() {
-//     console.log(`${this.name} is a ${this.job}`);
-//   }
-// }
-
-// class Programmer extends Person {
-//   constructor(name, job, age, language) {
-//     super(name, job, age);
-//     this.name = name;
-//     this.job = job;
-//     this.age = age;
-//     this.language = language;
-//     this.busy = true;
-//   }
-
-//   completeTask() {
-//     this.busy = false;
-//   }
-
-//   acceptNewTask() {
-//     this.busy = true;
-//   }
-
-//   offerNewTask() {
-//     if (this.busy === false)
-//       console.log(`${this.name} is ready to accept a new task`);
-//     console.log(`${this.name} cannot accept any new tasks at the moment`);
-//   }
-
-//   learnLanguage(lan) {
-//     this.language.push(lan);
-//   }
-
-//   listLanguage() {
-//     return this.language;
-//   }
-// }
-
-// const person01 = new Person("Harold", "Backend Engineer", 20);
-// const programmer01 = new Programmer("Harold", "DevOps", 35, [
-//   "HTML",
-//   "C#",
-//   "LUA",
-// ]);
-// const programmer02 = new Programmer("Edwin", "janitor", 89, [
-//   "HTML",
-//   "SASS,Ruby",
-// ]);
-// const programmer03 = new Programmer("Emmanuel", "SysOps", 31, [
-//   ("HTML", "CSS", "JS", "FUN"),
-// ]);
-
-// programmer01.learnLanguage("CSS");
-// programmer02.learnLanguage("C++");
-// programmer03.learnLanguage("JAVA");
-// console.log(programmer01.listLanguage());
-// console.log(programmer02.listLanguage());
-// console.log(programmer03.listLanguage());
-
-// console.log(person01);
-// console.log(programmer01);
-// console.log(programmer02);
-// console.log(programmer03);
-// person01.exercise();
-// person01.fetchJob();
-
-// I think how it was intended to be solved
-function Person(name, age, job) {
-  this.name = name;
-  this.age = age;
-  this.job = job;
+// *** More common usage ***
+class Person {
+  constructor(name, job, age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
+  }
+  exercise() {
+    console.log("running is fun!");
+  }
+  fetchJob() {
+    console.log(`${this.name} is a ${this.job}`);
+  }
 }
 
-Person.prototype.exercise = function () {
-  console.log("running is fun!");
-};
+class Programmer extends Person {
+  constructor(name, job, age, language) {
+    super(name, job, age);
+    this.name = name;
+    this.job = job;
+    this.age = age;
+    this.language = language;
+    this.busy = true;
+  }
 
-Person.prototype.fetchJob = function () {
-  console.log(`${this.name} is a ${this.job}`);
-};
+  completeTask() {
+    this.busy = false;
+  }
 
-function Programmer(name, age, job, language) {
-  // super(name, age, job);
-  this.name = name;
-  this.age = age;
-  this.job = job;
-  this.language = language;
+  acceptNewTask() {
+    this.busy = true;
+  }
+
+  offerNewTask() {
+    if (this.busy === false)
+      console.log(`${this.name} is ready to accept a new task`);
+    console.log(`${this.name} cannot accept any new tasks at the moment`);
+  }
+
+  learnLanguage(lan) {
+    this.language.push(lan);
+  }
+
+  listLanguage() {
+    return this.language;
+  }
 }
-
-Programmer.prototype.completeTask = function () {
-  this.busy = false;
-};
-
-Programmer.prototype.acceptNewTask = function () {
-  this.busy = true;
-};
-
-Programmer.prototype.offerNewTask = function () {
-  if (this.busy === false)
-    console.log(`${this.name} is ready to accept a new task`);
-  console.log(`${this.name} cannot accept any new tasks at the moment`);
-};
-
-Programmer.prototype.learnLanguage = function (lan) {
-  this.language.push(lan);
-};
-
-Programmer.prototype.listLanguage = function () {
-  return this.language;
-};
-
-Object.setPrototypeOf(Programmer.prototype, Person.prototype);
 
 const person01 = new Person("Harold", "Backend Engineer", 20);
 const programmer01 = new Programmer("Harold", "DevOps", 35, [
@@ -293,5 +219,80 @@ console.log(person01);
 console.log(programmer01);
 console.log(programmer02);
 console.log(programmer03);
+person01.exercise();
+person01.fetchJob();
+
+// *** I think how it was intended to be solved ***
+function Person1(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+}
+
+Person1.prototype.exercise = function () {
+  console.log("running is fun!");
+};
+
+Person1.prototype.fetchJob = function () {
+  console.log(`${this.name} is a ${this.job}`);
+};
+
+function Programmer1(name, age, job, language) {
+  // super(name, age, job);
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.language = language;
+}
+
+Programmer1.prototype.completeTask = function () {
+  this.busy = false;
+};
+
+Programmer1.prototype.acceptNewTask = function () {
+  this.busy = true;
+};
+
+Programmer1.prototype.offerNewTask = function () {
+  if (this.busy === false)
+    console.log(`${this.name} is ready to accept a new task`);
+  console.log(`${this.name} cannot accept any new tasks at the moment`);
+};
+
+Programmer1.prototype.learnLanguage = function (lan) {
+  this.language.push(lan);
+};
+
+Programmer1.prototype.listLanguage = function () {
+  return this.language;
+};
+
+Object.setPrototypeOf(Programmer1.prototype, Person1.prototype);
+
+const person1 = new Person1("Harold", "Backend Engineer", 20);
+const programmer1 = new Programmer1("Harold", "DevOps", 35, [
+  "HTML",
+  "C#",
+  "LUA",
+]);
+const programmer2 = new Programmer1("Edwin", "janitor", 89, [
+  "HTML",
+  "SASS,Ruby",
+]);
+const programmer3 = new Programmer1("Emmanuel", "SysOps", 31, [
+  ("HTML", "CSS", "JS", "FUN"),
+]);
+
+programmer1.learnLanguage("CSS");
+programmer2.learnLanguage("C++");
+programmer3.learnLanguage("JAVA");
+console.log(programmer1.listLanguage());
+console.log(programmer2.listLanguage());
+console.log(programmer3.listLanguage());
+
+console.log(person01);
+console.log(programmer1);
+console.log(programmer2);
+console.log(programmer3);
 person01.exercise();
 person01.fetchJob();
